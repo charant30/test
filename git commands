@@ -1,0 +1,352 @@
+================================================================================
+        GIT COMMANDS - SAMPLE EXAMPLES FOR BEGINNERS
+================================================================================
+
+A complete guide with practical examples to help beginners understand Git easily.
+
+================================================================================
+EXAMPLE 1: YOUR FIRST PROJECT (LOCAL) (DATE 26/06)
+================================================================================
+
+Scenario: Creating a project from scratch and saving your work
+
+Commands:
+---------
+# Step 1: Create a new folder and initialize Git
+mkdir my-project
+cd my-project
+git init
+
+# Step 2: Create a file
+echo "Hello World" > hello.txt
+
+# Step 3: Check what changed
+git status
+# Output: "hello.txt" is untracked
+
+# Step 4: Stage the file (prepare it for saving)
+git add hello.txt
+
+# Step 5: Save it with a message (commit)
+git commit -m "Add hello.txt file"
+
+# Step 6: See your history
+git log
+# Shows: commit message, author, date
+
+What They Learn:
+----------------
+The basic save cycle (create → add → commit)
+
+
+================================================================================
+EXAMPLE 2: MAKING CHANGES & SEEING DIFFERENCES (DATE 26/06)
+================================================================================
+
+Scenario: Modifying a file and reviewing what changed
+
+Commands:
+---------
+# File originally has: "Hello World"
+# You modify it to: "Hello World! Welcome"
+
+# See what changed
+git diff
+# Output shows:
+# - Hello World
+# + Hello World! Welcome
+
+# Stage and commit the change (optional)
+git add hello.txt
+git commit -m "Update greeting message"
+
+What They Learn:
+----------------
+Tracking changes and reviewing before committing
+
+
+================================================================================
+EXAMPLE 3: WORKING WITH BRANCHES (DATE 26/06)
+================================================================================
+
+Scenario: Adding a new feature without affecting the main code
+
+Commands:
+---------
+# You're on "main" branch (main version)
+git branch
+# Output: * main
+
+# Create a new branch for a feature
+git branch feature/add-colors
+git checkout feature/add-colors
+# OR in one command: git checkout -b feature/add-colors
+
+# Now you're in the new branch
+git branch
+# Output:
+#   main
+# * feature/add-colors
+
+# Make changes and commit in this branch
+echo "Adding color support" > feature.txt
+git add feature.txt
+git commit -m "Add color feature"
+
+# Switch back to main (untouched)
+git checkout main
+# feature.txt doesn't exist here!
+
+# Go back to your feature branch
+git checkout feature/add-colors
+# feature.txt is back!
+
+What They Learn:
+----------------
+Branches keep different work separate
+
+================================================================================
+EXAMPLE 7: WORKING WITH REMOTE (GITHUB) (DATE 26/06)
+================================================================================
+
+Scenario: Sharing code online
+
+Commands:
+---------
+# Step 1: Clone (download) a project from GitHub
+git clone https://github.com/user/project.git
+cd project
+
+# Step 2: Make changes
+echo "New feature" > new-file.txt
+git add new-file.txt
+git commit -m "Add new feature"
+
+# Step 3: Upload changes back to GitHub
+git push origin main
+
+# Step 4: Download updates from GitHub
+git pull origin main
+
+What They Learn:
+----------------
+Collaborating with others online
+
+
+================================================================================
+EXAMPLE 8: REAL PROJECT WORKFLOW (COMPLETE) (DATE 26/06)
+================================================================================
+
+Scenario: A typical day working on a project
+
+Commands:
+---------
+# Morning: Start with latest code
+git pull origin main
+
+# Work on a feature
+git checkout -b feature/user-login
+echo "Login functionality" > feature.txt
+git add feature.txt
+git commit -m "Add login form"
+
+# Update feature based on review
+echo "Login with validation" > feature.txt
+git add feature.txt
+git commit -m "Add form validation"
+
+# Send to GitHub
+git push origin feature/user-login
+
+# Cleanup (optional)
+git branch -d feature/user-login
+
+================================================================================
+EXAMPLE 4: MERGING BRANCHES
+================================================================================
+
+Scenario: Your feature is done, now merge it back to main
+
+Commands:
+---------
+# You're in feature/add-colors branch
+git commit -m "Complete color feature"
+
+# Switch to main
+git checkout main
+
+# Merge the feature branch into main
+git merge feature/add-colors
+# Output: "Merge made by..."
+
+# Now main has all changes from feature branch
+git log
+# Shows both commits
+
+# Delete the feature branch (cleanup)
+git branch -d feature/add-colors
+
+What They Learn:
+----------------
+Combining work from different branches
+
+
+================================================================================
+EXAMPLE 5: VIEWING HISTORY
+================================================================================
+
+Scenario: Looking back at what was done
+
+Commands:
+---------
+# See all commits in order
+git log
+# Output:
+# commit abc123...
+# Author: John Doe
+# Date: June 20, 2026
+# Message: Add color feature
+
+# See shorter version
+git log --oneline
+# Output:
+# abc123 Add color feature
+# def456 Update greeting message
+# ghi789 Add hello.txt file
+
+# See changes in a specific commit
+git show abc123
+# Shows what changed in that commit
+
+What They Learn:
+----------------
+Tracking project history and finding when changes were made
+
+
+================================================================================
+EXAMPLE 6: UNDOING MISTAKES
+================================================================================
+
+Scenario: "Oops, I made a mistake"
+
+Commands:
+---------
+# Case 1: Undo changes before staging
+git status
+# modified: hello.txt
+git restore hello.txt
+# File goes back to last commit
+
+# Case 2: Undo staging (before committing)
+git add hello.txt
+git restore --staged hello.txt
+# File is unstaged but changes remain
+
+# Case 3: Fix the last commit message
+git commit -m "Wrnog message"
+git commit --amend -m "Wrong message (corrected)"
+
+What They Learn:
+----------------
+How to fix mistakes safely
+
+
+================================================================================
+QUICK TIPS FOR TEACHING THESE EXAMPLES
+================================================================================
+
+1. START WITH EXAMPLE 1
+   - Let beginners create their first Git project
+   - Build confidence before moving to complex concepts
+
+2. USE ACTUAL FILE CHANGES
+   - Don't just show terminal commands
+   - Have them edit real files to see the impact
+
+3. EMPHASIZE THE "WHY"
+   - Explain what each command does
+   - Explain why they need to do it
+
+4. USE CONSISTENT NAMING
+   - Branch names like "feature/feature-name" help understanding
+   - Commit messages should be clear and descriptive
+
+5. ENCOURAGE EXPERIMENTATION
+   - Local Git is safe
+   - Mistakes are learning opportunities
+
+6. FOLLOW THE PROGRESSION
+   - Example 1-3: Local Git basics
+   - Example 4-5: Working with history and branches
+   - Example 6: Safety and undo
+   - Example 7-8: Remote repositories and real workflows
+
+
+================================================================================
+QUICK REFERENCE: GIT COMMANDS BY CATEGORY
+================================================================================
+
+SETUP & INITIALIZATION
+  git init              - Initialize a new Git repository
+  git clone <url>       - Download a project from GitHub
+
+BASIC WORKFLOW
+  git add <file>        - Stage file for commit
+  git commit -m "msg"   - Save changes with a message
+  git status            - See what changed
+
+VIEWING & HISTORY
+  git log               - See all commits
+  git log --oneline     - Short commit history
+  git show <commit>     - See changes in a commit
+  git diff              - See unsaved changes
+
+BRANCHES
+  git branch            - List all branches
+  git branch <name>     - Create new branch
+  git checkout <branch> - Switch to a branch
+  git merge <branch>    - Combine branches
+
+UNDO & FIX
+  git restore <file>    - Undo changes in a file
+  git restore --staged  - Unstage a file
+  git commit --amend    - Fix last commit message
+
+REMOTE (GITHUB)
+  git push origin <branch>  - Upload to GitHub
+  git pull origin <branch>  - Download from GitHub
+  git fetch                 - Get updates without merging
+
+
+================================================================================
+PRACTICE EXERCISES FOR BEGINNERS
+================================================================================
+
+Exercise 1: Create Your First Repository
+  1. Create a folder called "practice-git"
+  2. Initialize Git in that folder
+  3. Create a file called "notes.txt"
+  4. Add and commit the file
+
+Exercise 2: Make Changes & Track Them
+  1. Edit "notes.txt" and add some content
+  2. Use git diff to see what changed
+  3. Commit the change with a meaningful message
+  4. View the log to see your history
+
+Exercise 3: Create & Merge Branches
+  1. Create a branch called "feature/new-feature"
+  2. Make changes in that branch and commit
+  3. Switch back to main
+  4. Merge the feature branch
+  5. Delete the feature branch
+
+Exercise 4: Practice Undo
+  1. Make some changes to a file
+  2. Realize you made a mistake
+  3. Use git restore to undo the changes
+  4. Verify the file is back to normal
+
+================================================================================
+END OF DOCUMENT
+================================================================================
