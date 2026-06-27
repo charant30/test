@@ -179,6 +179,9 @@ git checkout main
 git merge feature/add-colors
 # Output: "Merge made by..."
 
+1. press esc
+2. type :wq and press
+
 # Now main has all changes from feature branch
 git log
 # Shows both commits
