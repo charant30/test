@@ -246,13 +246,47 @@ git restore --staged hello.txt
 # File is unstaged but changes remain
 
 # Case 3: Fix the last commit message
-git commit -m "Wrnog message"
-git commit --amend -m "Wrong message (corrected)"
+git commit -m "git commands.txt updated"
+git commit --amend -m "git commands updated"
 
 What They Learn:
 ----------------
 How to fix mistakes safely
 
+# Step 1: Check your commit history
+git log --oneline
+# Output:
+# abc123 Add wrong feature
+# def456 Update readme
+# ghi789 Initial commit
+
+# Step 2: Identify the commit to undo (let's say abc123)
+git revert abc123
+
+# Step 3: A new commit is created automatically
+# It will open your editor to confirm the revert message
+# Default message: "Revert 'Add wrong feature'"
+
+# Step 4: Confirm and save (if editor appears)
+# Just save and exit
+
+# Step 5: Check the new history
+git log --oneline
+# Output:
+# new123 Revert "Add wrong feature"
+# abc123 Add wrong feature
+# def456 Update readme
+# ghi789 Initial commit
+
+# Step 6: Push the revert commit to remote
+git push origin main
+
+What Happened:
+--------------
+- Original commit "abc123" is still in history (safe!)
+- A NEW commit "new123" was created that undoes the changes
+- Everyone pulling gets both commits, history is clean
+- Safe for shared/public repositories
 
 ================================================================================
 QUICK TIPS FOR TEACHING THESE EXAMPLES
